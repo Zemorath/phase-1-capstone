@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+        <title>Book Inventory</title>
+        <link rel="stylesheet" href="index.css" />
+    </head>
+    <body>
+        <div id="book-inventory">
+
+        </div>
+        <div class="container">
+            <form class="add-book-form">
+                <h3>Search for a book to add!</h3>
+
+                <input
+                    id="submittedName"
+                    type="text"
+                    name="name"
+                    value=""
+                    placeholder="Enter a title, author, or ISBN..."
+                    class="input-text"
+                />
+                <br />
+                
+                <label for="read-status">Choose Status:</label>
+                    <select name="statuses" id="statuses">
+                        <option value="read">Read</option>
+                        <option value="currently-reading">Currently Reading</option>
+                        <option value="wanting-to-read">Wanting To Read</option>
+                        <option value="on-hold">On Hold</option>
+                        <option value="dropped">Dropped</option>
+                    </select>
+                
+                <br />
+
+                <input
+                    type="submit"
+                    name="submit"
+                    value="Add Book"
+                    class="submit"
+                />
+            </form>
+        </div>
+
+        <script type="text/javascript" src="src/index.js"></script>
+    </body>
+</html>

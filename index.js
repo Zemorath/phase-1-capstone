@@ -29,7 +29,7 @@ function fetchBooks(value) {
 };
 
 function renderBooks(books) {
-    console.log(books.docs[0].author_name[0])
+    
     let collection = document.getElementById("book-collection")
     
     let divBook = document.createElement('div');
@@ -60,6 +60,14 @@ function renderBooks(books) {
 
     })
     divBook.appendChild(picButton)
+
+    let removeButton = document.createElement('button');
+    removeButton.setAttribute('class', 'remove')
+    removeButton.innerText = "Remove"
+    removeButton.addEventListener('click', () => {
+        divBook.remove();
+    })
+    divBook.appendChild(removeButton);
 
     collection.appendChild(divBook);
 

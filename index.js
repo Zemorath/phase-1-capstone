@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         addBooks(value);
     })
 
-    fetchBooks();
+    //fetchBooks();
 });
 
 
@@ -41,7 +41,8 @@ function searchBooks(books) {
 
         body: JSON.stringify({
             title: books.docs[0].title,
-            author: book.docs[0].author_name[0],
+            author: books.docs[0].author_name[0],
+            url: ""
         }),
     }).then(res => {
         return res.json()
@@ -63,6 +64,7 @@ function searchBooks(books) {
         let picButton = document.createElement('button');
         picButton.setAttribute('class', 'cover')
         picButton.innerText = "Add cover photo"
+        picButton.setAttribute("id", data.id)
         picButton.addEventListener('click', () => {
             let url = prompt("Please enter URL")
             if (url !== null){
@@ -71,6 +73,17 @@ function searchBooks(books) {
                 bookCover.classList.add("book-cover")
                 divBook.appendChild(bookCover)
                 picButton.style.display = "none"
+
+                return fetch(`http://localhost:3000/books/${data.id}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json"
+                    },
+                    body: JSON.stringify({
+                        "url": `${bookCover.src}`,
+                    })
+                }).then(resp => resp.json())
             } else {
 
             }
@@ -83,12 +96,12 @@ function searchBooks(books) {
         removeButton.innerText = "Remove"
         removeButton.addEventListener('click', () => {
             divBook.remove();
+            fetch (`http://localhost:3000/books/${data.id}`, {
+                method: "DELETE",
+            })
         })
         divBook.appendChild(removeButton);
 
         collection.appendChild(divBook);
     });
-
-    //Push book to DB
-    pushBooks();
 }

@@ -13,64 +13,82 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-        fetchBooks(value);
+        addBooks(value);
     })
+
+    fetchBooks();
 });
 
 
 
 
 
-
-function fetchBooks(value) {
+//Adding books to the interface
+function addBooks(value) {
     return fetch(`https://openlibrary.org/search.json?q=${value}`)
         .then(resp => resp.json())
-        .then(data => renderBooks(data))
+        .then(data => searchBooks(data))
 };
 
-function renderBooks(books) {
+function searchBooks(books) {
     
-    let collection = document.getElementById("book-collection")
-    
-    let divBook = document.createElement('div');
-    divBook.classList.add("card");
+    return fetch("http://localhost:3000/books", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
 
-    let bookName = document.createElement('h2');
-    bookName.innerText = books.docs[0].title;
-    divBook.appendChild(bookName);
-
-    let bookAuthor = document.createElement('h3');
-    bookAuthor.innerText = books.docs[0].author_name[0];
-    divBook.appendChild(bookAuthor)
-
-    let picButton = document.createElement('button');
-    picButton.setAttribute('class', 'cover')
-    picButton.innerText = "Add cover photo"
-    picButton.addEventListener('click', () => {
-        let url = prompt("Please enter URL")
-        if (url !== null){
-            let bookCover = new Image();
-            bookCover.src = url
-            bookCover.classList.add("book-cover")
-            divBook.appendChild(bookCover)
-            picButton.style.display = "none"
-        } else {
-
-        }
-
+        body: JSON.stringify({
+            title: books.docs[0].title,
+            author: book.docs[0].author_name[0],
+        }),
+    }).then(res => {
+        return res.json()
     })
-    divBook.appendChild(picButton)
+    .then(data => {
+        let collection = document.getElementById("book-collection")
+        
+        let divBook = document.createElement('div');
+        divBook.classList.add("card");
 
-    let removeButton = document.createElement('button');
-    removeButton.setAttribute('class', 'remove')
-    removeButton.innerText = "Remove"
-    removeButton.addEventListener('click', () => {
-        divBook.remove();
-    })
-    divBook.appendChild(removeButton);
+        let bookName = document.createElement('h2');
+        bookName.innerText = books.docs[0].title;
+        divBook.appendChild(bookName);
 
-    collection.appendChild(divBook);
+        let bookAuthor = document.createElement('h3');
+        bookAuthor.innerText = books.docs[0].author_name[0];
+        divBook.appendChild(bookAuthor)
 
-    
-    
+        let picButton = document.createElement('button');
+        picButton.setAttribute('class', 'cover')
+        picButton.innerText = "Add cover photo"
+        picButton.addEventListener('click', () => {
+            let url = prompt("Please enter URL")
+            if (url !== null){
+                let bookCover = new Image();
+                bookCover.src = url
+                bookCover.classList.add("book-cover")
+                divBook.appendChild(bookCover)
+                picButton.style.display = "none"
+            } else {
+
+            }
+
+        })
+        divBook.appendChild(picButton)
+
+        let removeButton = document.createElement('button');
+        removeButton.setAttribute('class', 'remove')
+        removeButton.innerText = "Remove"
+        removeButton.addEventListener('click', () => {
+            divBook.remove();
+        })
+        divBook.appendChild(removeButton);
+
+        collection.appendChild(divBook);
+    });
+
+    //Push book to DB
+    pushBooks();
 }

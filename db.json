@@ -1,3 +1,16 @@
 {
-  "books": []
+  "books": [
+    {
+      "title": "A darker shade of magic",
+      "author": "Victoria Schwab",
+      "url": "https://m.media-amazon.com/images/I/81C5G3UsHrL._SY466_.jpg",
+      "id": 1
+    },
+    {
+      "title": "The Lord of the Rings",
+      "author": "J.R.R. Tolkien",
+      "url": "",
+      "id": 2
+    }
+  ]
 }

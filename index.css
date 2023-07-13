@@ -25,7 +25,8 @@ body {
     height: 25rem;
     display: inline-grid;
     margin: 1rem 2rem;
-    box-shadow: 3px 5px #e04b52
+    box-shadow: 3px 5px #e04b52;
+    position: relative;
 }
 
 .book-cover {
@@ -116,4 +117,15 @@ fieldset{
     padding: 0 0 0 35px;
     text-shadow:1px 1px 0 white;
     width: 385px;
+}
+
+.close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    line-height: 12px;
+    width: 18px;
+    font-size: 8pt;
+    margin-top: 1px;
+    margin-right: 2px;
 }

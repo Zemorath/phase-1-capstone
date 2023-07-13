@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         addBooks(input);
+        input.value = ""
         
     })
 
@@ -73,6 +74,7 @@ function searchBooks(books) {
                 bookCover.src = url
                 bookCover.classList.add("book-cover")
                 divBook.appendChild(bookCover)
+                picButton.setAttribute('class', 'none')
                 picButton.style.display = "none"
 
                 return fetch(`http://localhost:3000/books/${data.id}`, {
@@ -93,8 +95,8 @@ function searchBooks(books) {
         divBook.appendChild(picButton)
 
         let removeButton = document.createElement('button');
-        removeButton.setAttribute('class', 'remove')
-        removeButton.innerText = "Remove"
+        removeButton.setAttribute('class', 'close-button')
+        removeButton.innerHTML = "&times;"
         removeButton.addEventListener('click', () => {
             divBook.remove();
             fetch (`http://localhost:3000/books/${data.id}`, {
@@ -106,6 +108,8 @@ function searchBooks(books) {
         collection.appendChild(divBook);
     });
 }
+
+
 
 function fetchBooks() {
     return fetch("http://localhost:3000/books")
@@ -129,8 +133,8 @@ function renderBooks(books) {
         bookAuthor.innerText = book.author;
         divBook.appendChild(bookAuthor)
 
-        let picture = document.getElementsByClassName("cover")
-        if (!picture) {
+        let picture = book.url
+        if (picture == "") {
             let picButton = document.createElement('button');
             picButton.setAttribute('class', 'cover')
             picButton.innerText = "Add cover photo"
@@ -169,8 +173,8 @@ function renderBooks(books) {
         }
 
         let removeButton = document.createElement('button');
-        removeButton.setAttribute('class', 'remove')
-        removeButton.innerText = "Remove"
+        removeButton.setAttribute('class', 'close-button')
+        removeButton.innerHTML = "&times;"
         removeButton.addEventListener('click', () => {
             divBook.remove();
             fetch (`http://localhost:3000/books/${book.id}`, {

@@ -70,7 +70,23 @@ function searchBooks(books) {
             chooseBook.innerText = "Choose"
             chooseBook.setAttribute("id", book.id)
             chooseBook.addEventListener("click", () => {
-                selectBook(book);
+                fetch("http://localhost:3000/books", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                    },
+
+                    body: JSON.stringify({
+                        title: book.title,
+                        author: book.author_name[0],
+                        url: ""
+                    })   
+                })
+                .then(resp => resp.json())
+                .then(book => selectBook(book))
+
+                // selectBook(book);
                 searchField.remove();
                 
             })
@@ -83,7 +99,7 @@ function searchBooks(books) {
 
 
 function selectBook(book) {
-    
+    console.log(book)
     let collection = document.getElementById("book-collection");
     let divBook = document.createElement('div');
     divBook.classList.add("card");
@@ -94,25 +110,10 @@ function selectBook(book) {
     bookName.innerText = book.title;
 
     let author = document.createElement('h3');
-    author.innerText = book.author_name
+    author.innerText = book.author
 
 
     divBook.append(bookName, author);
-
-    fetch("http://localhost:3000/books", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-        },
-
-        body: JSON.stringify({
-            title: book.title,
-            author: book.author_name,
-            url: ""
-        })
-    });
-    console.log(book)
 
     let picButton = document.createElement('button');
         picButton.setAttribute('class', 'cover')
@@ -128,7 +129,7 @@ function selectBook(book) {
                 picButton.setAttribute('class', 'none')
                 picButton.style.display = "none"
 
-                fetch(`http://localhost:3000/books/${book.id}`, {
+                return fetch(`http://localhost:3000/books/${book.id}`, {
                     method: "PATCH",
                     headers: {
                         "Content-Type": "application/json",
@@ -150,7 +151,7 @@ function selectBook(book) {
     removeButton.innerHTML = "&times;"
     removeButton.addEventListener('click', () => {
         divBook.remove();
-        fetch (`http://localhost:3000/books/${book.id}`, {
+        fetch (`http://localhost:3000/books/${selected.id}`, {
             method: "DELETE",
         })
     })
@@ -160,19 +161,7 @@ function selectBook(book) {
 
     collection.appendChild(divBook);
     
-    // return fetch("http://localhost:3000/books", {
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //         Accept: "application/json",
-    //     },
-
-    //     body: JSON.stringify({
-    //         title: book.title,
-    //         author: book.author_name,
-    //         url: ""
-    //     })
-    // })
+    
 }
 
 

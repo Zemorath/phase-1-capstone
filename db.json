@@ -1,16 +1,13 @@
 {
   "books": [
     {
-      "title": "The Lord of the Rings",
-      "author": "J.R.R. Tolkien",
+      "title": "A darker shade of magic",
+      "author": [
+        "Victoria Schwab",
+        "V. E. Schwab"
+      ],
       "url": "",
       "id": 1
-    },
-    {
-      "title": "A darker shade of magic",
-      "author": "Victoria Schwab",
-      "url": "",
-      "id": 2
     }
   ]
 }

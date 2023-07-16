@@ -14,14 +14,25 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         addBooks(input);
-        input.value = ""
+        input = ""
         
     })
 
     fetchBooks();
 });
 
+function removeSearch() {
+    let remove = document.getElementById("cancel-search");
+    let searchField = document.getElementsByClassName("search")
+    remove.addEventListener("click", (event) => {
+        event.preventDefault();
+        if (searchField) {
+            searchField.remove()
+        } else {
 
+        }
+    })
+}
 
 
 
@@ -33,8 +44,62 @@ function addBooks(input) {
 };
 
 function searchBooks(books) {
+
+    let searchField = document.createElement('div');
+    searchField.setAttribute("class", 'search');
+    let collection = document.getElementById("search-collection");
+
+    collection.appendChild(searchField)
+    books.docs.forEach(book => {
+        
+        let divBook = document.createElement('div');
+        divBook.classList.add("card");
+
+        let bookName = document.createElement('h2');
+        bookName.innerText = book.title;
+
+        let bookAuthor = document.createElement('h3');
+        if (book.author_name !== undefined) {
+            bookAuthor.innerText = book.author_name[0];
+            divBook.appendChild(bookAuthor)
+        } else {
+
+        }
+
+        let chooseBook = document.createElement('button')
+            chooseBook.innerText = "Choose"
+            chooseBook.setAttribute("id", book.id)
+            chooseBook.addEventListener("click", () => {
+                selectBook(book);
+                searchField.remove();
+                
+            })
+        
+        divBook.append(bookName, chooseBook)
+
+        searchField.appendChild(divBook);
+    });
+}
+
+
+function selectBook(book) {
     
-    return fetch("http://localhost:3000/books", {
+    let collection = document.getElementById("book-collection");
+    let divBook = document.createElement('div');
+    divBook.classList.add("card");
+
+    let chosenBook = document.getElementById(book)
+
+    let bookName = document.createElement('h2');
+    bookName.innerText = book.title;
+
+    let author = document.createElement('h3');
+    author.innerText = book.author_name
+
+
+    divBook.append(bookName, author);
+
+    fetch("http://localhost:3000/books", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -42,31 +107,17 @@ function searchBooks(books) {
         },
 
         body: JSON.stringify({
-            title: books.docs[0].title,
-            author: books.docs[0].author_name[0],
+            title: book.title,
+            author: book.author_name,
             url: ""
-        }),
-    }).then(res => {
-        return res.json()
-    })
-    .then(data => {
-        let collection = document.getElementById("book-collection")
-        
-        let divBook = document.createElement('div');
-        divBook.classList.add("card");
+        })
+    });
+    console.log(book)
 
-        let bookName = document.createElement('h2');
-        bookName.innerText = books.docs[0].title;
-        divBook.appendChild(bookName);
-
-        let bookAuthor = document.createElement('h3');
-        bookAuthor.innerText = books.docs[0].author_name[0];
-        divBook.appendChild(bookAuthor)
-
-        let picButton = document.createElement('button');
+    let picButton = document.createElement('button');
         picButton.setAttribute('class', 'cover')
         picButton.innerText = "Add cover photo"
-        picButton.setAttribute("id", data.id)
+        picButton.setAttribute("id", book.id)
         picButton.addEventListener('click', () => {
             let url = prompt("Please enter URL")
             if (url !== null){
@@ -77,7 +128,7 @@ function searchBooks(books) {
                 picButton.setAttribute('class', 'none')
                 picButton.style.display = "none"
 
-                return fetch(`http://localhost:3000/books/${data.id}`, {
+                fetch(`http://localhost:3000/books/${book.id}`, {
                     method: "PATCH",
                     headers: {
                         "Content-Type": "application/json",
@@ -92,21 +143,36 @@ function searchBooks(books) {
             }
 
         })
-        divBook.appendChild(picButton)
+    divBook.appendChild(picButton)
 
-        let removeButton = document.createElement('button');
-        removeButton.setAttribute('class', 'close-button')
-        removeButton.innerHTML = "&times;"
-        removeButton.addEventListener('click', () => {
-            divBook.remove();
-            fetch (`http://localhost:3000/books/${data.id}`, {
-                method: "DELETE",
-            })
+    let removeButton = document.createElement('button');
+    removeButton.setAttribute('class', 'close-button')
+    removeButton.innerHTML = "&times;"
+    removeButton.addEventListener('click', () => {
+        divBook.remove();
+        fetch (`http://localhost:3000/books/${book.id}`, {
+            method: "DELETE",
         })
-        divBook.appendChild(removeButton);
+    })
 
-        collection.appendChild(divBook);
-    });
+    divBook.append(removeButton)
+    
+
+    collection.appendChild(divBook);
+    
+    // return fetch("http://localhost:3000/books", {
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //         Accept: "application/json",
+    //     },
+
+    //     body: JSON.stringify({
+    //         title: book.title,
+    //         author: book.author_name,
+    //         url: ""
+    //     })
+    // })
 }
 
 

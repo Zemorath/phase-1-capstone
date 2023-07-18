@@ -1,6 +1,6 @@
 # phase-1-capstone
 
-#Personal Library Database
+# Personal Library Database
 ---
 
 ## Introduction

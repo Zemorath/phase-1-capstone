@@ -11,5 +11,16 @@ track of them without making you pay.
 
 ## Features
 
-*Add your favorite cover!
-*
+* Add your favorite cover!
+* Currently able to use either book title or ISBN
+* Add any number of books
+* Choose which edition to add
+
+## Goals
+
+* Add a flip feature so each card default shows just the cover and hovering over flips it to show book information
+* Format information on card better
+* Refine and remove duplicate search results
+* Add drag and drop to reorder books
+* Add sorting capabilities
+* Add web page display to look like a bookshelf

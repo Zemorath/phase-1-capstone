@@ -24,3 +24,8 @@ track of them without making you pay.
 * Add drag and drop to reorder books
 * Add sorting capabilities
 * Add web page display to look like a bookshelf
+
+# Credits
+
+* Credit to OpenLibrary for providing public API to use found [here] (https://openlibrary.org/developers)
+* Inpiration and card formatting taken from Toy Tale project found [here] (https://github.com/Zemorath/phase-1-practice-toy-tale)

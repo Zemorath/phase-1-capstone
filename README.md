@@ -27,5 +27,5 @@ track of them without making you pay.
 
 # Credits
 
-* Credit to OpenLibrary for providing public API to use found [here] (https://openlibrary.org/developers)
-* Inpiration and card formatting taken from Toy Tale project found [here] (https://github.com/Zemorath/phase-1-practice-toy-tale)
+* Credit to OpenLibrary for providing public API to use found [here](https://openlibrary.org/developers)
+* Inpiration and card formatting taken from Toy Tale project found [here](https://github.com/Zemorath/phase-1-practice-toy-tale)

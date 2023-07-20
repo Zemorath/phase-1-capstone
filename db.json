@@ -5,6 +5,12 @@
       "author": "Victoria Schwab",
       "url": "https://m.media-amazon.com/images/I/51+QCXDsPCL._SX329_BO1,204,203,200_.jpg",
       "id": 1
+    },
+    {
+      "title": "The Lord of the Rings",
+      "author": "J.R.R. Tolkien",
+      "url": "",
+      "id": 2
     }
   ]
 }

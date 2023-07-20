@@ -1,0 +1,12 @@
+0000000000000000000000000000000000000000 d6c0c4868ab61240e1affad9a64d038d44f69603 Zemorath <trentward10@gmail.com> 1688920769 -0500	clone: from github.com:Zemorath/phase-1-capstone.git
+d6c0c4868ab61240e1affad9a64d038d44f69603 89a1c54947c11330c96053d0a525b9a0f6639c8f Zemorath <trentward10@gmail.com> 1688935137 -0500	commit: Basic HTML Structure Complete
+89a1c54947c11330c96053d0a525b9a0f6639c8f 307fa0728a9b58f35a6e4128abfc507519eced96 Zemorath <trentward10@gmail.com> 1688951352 -0500	commit: Addition of Initial Javascript Functions
+307fa0728a9b58f35a6e4128abfc507519eced96 6d83d7bdb476d8aa49824b7aa45e60b2b69727a2 Zemorath <trentward10@gmail.com> 1689033953 -0500	commit: Correctly fetching .JSON data for desired titles
+6d83d7bdb476d8aa49824b7aa45e60b2b69727a2 547b4175575f30484a8f30337af4e0bb9c941ca8 Zemorath <trentward10@gmail.com> 1689044526 -0500	commit: Fetched data correctly populating in cards with capability to add book cover
+547b4175575f30484a8f30337af4e0bb9c941ca8 5a9420bff631d3a918a617b53adba2551cc3924a Zemorath <trentward10@gmail.com> 1689047374 -0500	commit: Remove button added
+5a9420bff631d3a918a617b53adba2551cc3924a cd578caca9649e91323b67d7e66f91662db1d876 Zemorath <trentward10@gmail.com> 1689133188 -0500	commit: Added ability to push added books to .json database
+cd578caca9649e91323b67d7e66f91662db1d876 d01d1518b89d3d0bb06027ed4c3ca47fe7a14261 Zemorath <trentward10@gmail.com> 1689138238 -0500	commit: Patching to add URL from linked photo and Delete request when remove button click added and operating correctly
+d01d1518b89d3d0bb06027ed4c3ca47fe7a14261 e17a904f07db3a2200ecfdb16222d9ac4a3043e1 Zemorath <trentward10@gmail.com> 1689222705 -0500	commit: Added books are being added to local JSON file and are maintained on refresh
+e17a904f07db3a2200ecfdb16222d9ac4a3043e1 6479a8c65823f0813db10e6592f559f752e28833 Zemorath <trentward10@gmail.com> 1689229220 -0500	commit: Fixed bug where photos did not populate on DOM Load
+6479a8c65823f0813db10e6592f559f752e28833 743043eacdae4945668480a44174714f9245e216 Zemorath <trentward10@gmail.com> 1689482010 -0500	commit: Search field working correctly with added clear search button
+743043eacdae4945668480a44174714f9245e216 ce9fd6d45bf41c5c2e33255826f1080eb90b65ef Zemorath <trentward10@gmail.com> 1689483349 -0500	commit: Add photo and author name bugs working as intended now

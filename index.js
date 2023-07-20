@@ -97,14 +97,25 @@ function searchBooks(books) {
     });
 }
 
+function mouseOut() {
+    divBook.classList.remove("card");
+    divBook.classList.add("card-two");
+}
 
 function selectBook(book) {
-    console.log(book)
+    
     let collection = document.getElementById("book-collection");
     let divBook = document.createElement('div');
     divBook.classList.add("card");
 
-    let chosenBook = document.getElementById(book)
+    divBook.addEventListener("mouseover", mouseOut())
+
+    divBook.addEventListener("mouseout", () => {
+        divBook.classList.remove("card-two");
+        divBook.classList.add("card")
+    })
+    
+
 
     let bookName = document.createElement('h2');
     bookName.innerText = book.title;
@@ -151,7 +162,7 @@ function selectBook(book) {
     removeButton.innerHTML = "&times;"
     removeButton.addEventListener('click', () => {
         divBook.remove();
-        fetch (`http://localhost:3000/books/${selected.id}`, {
+        fetch (`http://localhost:3000/books/${book.id}`, {
             method: "DELETE",
         })
     })
@@ -179,7 +190,18 @@ function renderBooks(books) {
         
         let divBook = document.createElement('div');
         divBook.classList.add("card");
+        divBook.setAttribute("id", "item")
 
+        divBook.addEventListener("mouseover", () => {
+            divBook.classList.remove("card");
+            divBook.classList.add("card-two")
+        })
+    
+        divBook.addEventListener("mouseout", () => {
+            divBook.classList.remove("card-two");
+            divBook.classList.add("card")
+        })
+        
         let bookName = document.createElement('h2');
         bookName.innerText = book.title;
         divBook.appendChild(bookName);

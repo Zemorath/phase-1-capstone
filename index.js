@@ -97,10 +97,7 @@ function searchBooks(books) {
     });
 }
 
-function mouseOut() {
-    divBook.classList.remove("card");
-    divBook.classList.add("card-two");
-}
+
 
 function selectBook(book) {
     
@@ -108,7 +105,10 @@ function selectBook(book) {
     let divBook = document.createElement('div');
     divBook.classList.add("card");
 
-    divBook.addEventListener("mouseover", mouseOut())
+    divBook.addEventListener("mouseover", () => {
+        divBook.classList.remove("card");
+        divBook.classList.add("card-two");
+    })
 
     divBook.addEventListener("mouseout", () => {
         divBook.classList.remove("card-two");

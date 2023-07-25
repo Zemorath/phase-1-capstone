@@ -1,3 +1,34 @@
 {
-  "books": []
+  "books": [
+    {
+      "title": "Darker Shade of Magic Collector's Edition",
+      "author": "V.E. Schwab",
+      "url": "https://m.media-amazon.com/images/I/51+QCXDsPCL._SX329_BO1,204,203,200_.jpg",
+      "id": 1
+    },
+    {
+      "title": "The Lord of the Rings",
+      "author": "J.R.R. Tolkien",
+      "url": "https://m.media-amazon.com/images/I/31fiP+vzJiL._SX327_BO1,204,203,200_.jpg",
+      "id": 2
+    },
+    {
+      "title": "Kings of the wyld",
+      "author": "Nicholas Eames",
+      "url": "",
+      "id": 3
+    },
+    {
+      "title": "On Becoming a Person",
+      "author": "Rogers, Carl R.",
+      "url": "",
+      "id": 4
+    },
+    {
+      "title": "The Flowers of Buffoonery",
+      "author": "Osamu Dazai",
+      "url": "",
+      "id": 6
+    }
+  ]
 }

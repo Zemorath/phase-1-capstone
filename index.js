@@ -1,7 +1,7 @@
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    let bookFormContainer = document.querySelector(".container");
+    // let bookFormContainer = document.querySelector(".container");
     let addBtn = document.querySelector("#add-book-button");
     addBtn.addEventListener("click", (event) => {
         event.preventDefault()
@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchBooks();
 });
 
+// Removes currently searched books
 function removeSearch() {
     let remove = document.getElementById("cancel-search");
     let searchField = document.getElementsByClassName("search")
@@ -43,6 +44,7 @@ function addBooks(input) {
         .then(data => searchBooks(data))
 };
 
+// Searches for books
 function searchBooks(books) {
 
     let searchField = document.createElement('div');

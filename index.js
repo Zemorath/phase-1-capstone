@@ -50,8 +50,9 @@ function searchBooks(books) {
     let searchField = document.createElement('div');
     searchField.setAttribute("class", 'search');
     let collection = document.getElementById("search-collection");
+    collection.appendChild(searchField);
 
-    collection.appendChild(searchField)
+    // iterates through search results
     books.docs.forEach(book => {
         
         let divBook = document.createElement('div');
@@ -60,6 +61,7 @@ function searchBooks(books) {
         let bookName = document.createElement('h2');
         bookName.innerText = book.title;
 
+        // Only adds books that do not have a blank author name
         let bookAuthor = document.createElement('h3');
         if (book.author_name !== undefined) {
             bookAuthor.innerText = book.author_name[0];
@@ -68,6 +70,7 @@ function searchBooks(books) {
 
         }
 
+        // posts selected book to local database
         let chooseBook = document.createElement('button')
             chooseBook.innerText = "Choose"
             chooseBook.setAttribute("id", book.id)
@@ -88,7 +91,7 @@ function searchBooks(books) {
                 .then(resp => resp.json())
                 .then(book => selectBook(book))
 
-                // selectBook(book);
+                
                 searchField.remove();
                 
             })
@@ -100,7 +103,7 @@ function searchBooks(books) {
 }
 
 
-
+// displaying selected book
 function selectBook(book) {
     
     let collection = document.getElementById("book-collection");
@@ -128,6 +131,7 @@ function selectBook(book) {
 
     divBook.append(bookName, author);
 
+    // a button to add a cover photo via url and patching it to database
     let picButton = document.createElement('button');
         picButton.setAttribute('class', 'cover')
         picButton.innerText = "Add cover photo"
@@ -159,6 +163,7 @@ function selectBook(book) {
         })
     divBook.appendChild(picButton)
 
+    // button to remove book from library and databse
     let removeButton = document.createElement('button');
     removeButton.setAttribute('class', 'close-button')
     removeButton.innerHTML = "&times;"
@@ -178,13 +183,14 @@ function selectBook(book) {
 }
 
 
-
+// when website is reloaded, fetches current books from database
 function fetchBooks() {
     return fetch("http://localhost:3000/books")
         .then(resp => resp.json())
         .then(data => renderBooks(data))
 };
 
+// function to render all books onto webpage
 function renderBooks(books) {
     let collection = document.getElementById("book-collection")
 

@@ -164,17 +164,7 @@ function selectBook(book) {
     divBook.appendChild(picButton)
 
     // button to remove book from library and databse
-    let removeButton = document.createElement('button');
-    removeButton.setAttribute('class', 'close-button')
-    removeButton.innerHTML = "&times;"
-    removeButton.addEventListener('click', () => {
-        divBook.remove();
-        fetch (`http://localhost:3000/books/${book.id}`, {
-            method: "DELETE",
-        })
-    })
-
-    divBook.append(removeButton)
+    removeButton(divBook, book);
     
 
     collection.appendChild(divBook);
@@ -257,7 +247,16 @@ function renderBooks(books) {
 
         }
 
-        let removeButton = document.createElement('button');
+        removeButton(divBook, book);
+
+        collection.appendChild(divBook);
+    })
+};
+
+
+//function to add a button which removes books from library
+function removeButton(divBook, book) {
+    let removeButton = document.createElement('button');
         removeButton.setAttribute('class', 'close-button')
         removeButton.innerHTML = "&times;"
         removeButton.addEventListener('click', () => {
@@ -266,8 +265,5 @@ function renderBooks(books) {
                 method: "DELETE",
             })
         })
-        divBook.appendChild(removeButton);
-
-        collection.appendChild(divBook);
-    })
-};
+    divBook.appendChild(removeButton);
+}

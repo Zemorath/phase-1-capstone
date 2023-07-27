@@ -121,17 +121,10 @@ function selectBook(book) {
     let divBook = document.createElement('div');
     divBook.classList.add("card");
 
-    divBook.addEventListener("mouseover", () => {
-        divBook.classList.remove("card");
-        divBook.classList.add("card-two");
-    })
-
-    divBook.addEventListener("mouseout", () => {
-        divBook.classList.remove("card-two");
-        divBook.classList.add("card")
-    })
+    //mouseover/mouseout event listener
+    mouseEvent(divBook);
     
-
+    //adds book information
     bookInfo(divBook, book)
 
     // a button to add a cover photo via url and patching it to database
@@ -164,15 +157,7 @@ function renderBooks(books) {
         divBook.classList.add("card");
         divBook.setAttribute("id", "item")
 
-        divBook.addEventListener("mouseover", () => {
-            divBook.classList.remove("card");
-            divBook.classList.add("card-two")
-        })
-    
-        divBook.addEventListener("mouseout", () => {
-            divBook.classList.remove("card-two");
-            divBook.classList.add("card")
-        })
+        mouseEvent(divBook);
 
         bookInfo(divBook, book);
         
@@ -216,7 +201,7 @@ function bookInfo(divBook, book) {
     divBook.append(bookName, bookAuthor, bookISBN)
 }
 
-
+//function to add picture button to a card
 function pictureButton(divBook, book) {
     let picture = book.url
     if (picture == "") {
@@ -256,4 +241,18 @@ function pictureButton(divBook, book) {
         divBook.appendChild(bookCover)
 
     }
+}
+
+
+//function to add a mouseover/mouseout event to cards
+function mouseEvent(divBook) {
+    divBook.addEventListener("mouseover", () => {
+        divBook.classList.remove("card");
+        divBook.classList.add("card-two");
+    })
+
+    divBook.addEventListener("mouseout", () => {
+        divBook.classList.remove("card-two");
+        divBook.classList.add("card")
+    })
 }

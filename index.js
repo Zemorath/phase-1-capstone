@@ -138,10 +138,10 @@ function selectBook(book) {
     bookName.innerText = book.title;
 
     let author = document.createElement('h3');
-    author.innerText = book.author
+    author.innerText = book.author;
 
     let bookISBN = document.createElement('h4');
-    bookISBN.innerText = book.isbn
+    bookISBN.innerText = `ISBN: ${book.isbn}`;
 
 
     divBook.append(bookName, author, bookISBN);
@@ -224,7 +224,7 @@ function renderBooks(books) {
         divBook.appendChild(bookAuthor)
 
         let bookISBN = document.createElement("h4");
-        bookISBN.innerText = book.isbn;
+        bookISBN.innerText = `ISBN: ${book.isbn}`;
         divBook.appendChild(bookISBN);
 
         let picture = book.url

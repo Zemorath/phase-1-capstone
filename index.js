@@ -132,18 +132,7 @@ function selectBook(book) {
     })
     
 
-
-    let bookName = document.createElement('h2');
-    bookName.innerText = book.title;
-
-    let author = document.createElement('h3');
-    author.innerText = book.author;
-
-    let bookISBN = document.createElement('h4');
-    bookISBN.innerText = `ISBN: ${book.isbn}`;
-
-
-    divBook.append(bookName, author, bookISBN);
+    bookInfo(divBook, book)
 
     // a button to add a cover photo via url and patching it to database
     let picButton = document.createElement('button');
@@ -213,17 +202,9 @@ function renderBooks(books) {
             divBook.classList.remove("card-two");
             divBook.classList.add("card")
         })
+
+        bookInfo(divBook, book);
         
-        let bookName = document.createElement('h2');
-        bookName.innerText = book.title;
-
-        let bookAuthor = document.createElement('h3');
-        bookAuthor.innerText = book.author;
-
-        let bookISBN = document.createElement("h4");
-        bookISBN.innerText = `ISBN: ${book.isbn}`;
-
-        divBook.append(bookName, bookAuthor, bookISBN)
 
         let picture = book.url
         if (picture == "") {
@@ -283,4 +264,19 @@ function removeButton(divBook, book) {
             })
         })
     divBook.appendChild(removeButton);
+}
+
+
+//function to add relevant book information to card
+function bookInfo(divBook, book) {
+    let bookName = document.createElement('h2');
+    bookName.innerText = book.title;
+
+    let bookAuthor = document.createElement('h3');
+    bookAuthor.innerText = book.author;
+
+    let bookISBN = document.createElement("h4");
+    bookISBN.innerText = `ISBN: ${book.isbn}`;
+
+    divBook.append(bookName, bookAuthor, bookISBN)
 }

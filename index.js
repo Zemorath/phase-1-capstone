@@ -94,7 +94,7 @@ function searchBooks(books) {
 
                     body: JSON.stringify({
                         title: book.title,
-                        author: book.author_name[0],
+                        author_name: book.author_name[0],
                         url: "",
                         isbn: book.isbn[0]
                     })   
@@ -135,36 +135,7 @@ function selectBook(book) {
     bookInfo(divBook, book)
 
     // a button to add a cover photo via url and patching it to database
-    let picButton = document.createElement('button');
-        picButton.setAttribute('class', 'cover')
-        picButton.innerText = "Add cover photo"
-        picButton.setAttribute("id", book.id)
-        picButton.addEventListener('click', () => {
-            let url = prompt("Please enter URL")
-            if (url !== null){
-                let bookCover = new Image();
-                bookCover.src = url
-                bookCover.classList.add("book-cover")
-                divBook.appendChild(bookCover)
-                picButton.setAttribute('class', 'none')
-                picButton.style.display = "none"
-
-                return fetch(`http://localhost:3000/books/${book.id}`, {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json"
-                    },
-                    body: JSON.stringify({
-                        "url": `${bookCover.src}`,
-                    })
-                }).then(resp => resp.json())
-            } else {
-
-            }
-
-        })
-    divBook.appendChild(picButton)
+    pictureButton(divBook, book);
 
     // button to remove book from library and databse
     removeButton(divBook, book);
@@ -205,45 +176,7 @@ function renderBooks(books) {
 
         bookInfo(divBook, book);
         
-
-        let picture = book.url
-        if (picture == "") {
-            let picButton = document.createElement('button');
-            picButton.setAttribute('class', 'cover')
-            picButton.innerText = "Add cover photo"
-            picButton.setAttribute("id", book.id)
-            picButton.addEventListener('click', () => {
-                let url = prompt("Please enter URL")
-                if (url !== null){
-                    let bookCover = new Image();
-                    bookCover.src = url
-                    bookCover.classList.add("book-cover")
-                    divBook.appendChild(bookCover)
-                    picButton.style.display = "none"
-
-                    return fetch(`http://localhost:3000/books/${book.id}`, {
-                        method: "PATCH",
-                        headers: {
-                            "Content-Type": "application/json",
-                            Accept: "application/json"
-                        },
-                        body: JSON.stringify({
-                            "url": `${bookCover.src}`,
-                        })
-                    }).then(resp => resp.json())
-                } else {
-
-                }
-
-            })
-            divBook.appendChild(picButton)
-        } else {
-            let bookCover = new Image();
-            bookCover.src = book.url;
-            bookCover.classList.add("book-cover")
-            divBook.appendChild(bookCover)
-
-        }
+        pictureButton(divBook, book)
 
         removeButton(divBook, book);
 
@@ -251,6 +184,8 @@ function renderBooks(books) {
     })
 };
 
+
+//COLLECTION OF REUSABLE FUNCTIONS
 
 //function to add a button which removes books from library
 function removeButton(divBook, book) {
@@ -273,10 +208,52 @@ function bookInfo(divBook, book) {
     bookName.innerText = book.title;
 
     let bookAuthor = document.createElement('h3');
-    bookAuthor.innerText = book.author;
+    bookAuthor.innerText = book.author_name;
 
     let bookISBN = document.createElement("h4");
     bookISBN.innerText = `ISBN: ${book.isbn}`;
 
     divBook.append(bookName, bookAuthor, bookISBN)
+}
+
+
+function pictureButton(divBook, book) {
+    let picture = book.url
+    if (picture == "") {
+        let picButton = document.createElement('button');
+        picButton.setAttribute('class', 'cover')
+        picButton.innerText = "Add cover photo"
+        picButton.setAttribute("id", book.id)
+        picButton.addEventListener('click', () => {
+            let url = prompt("Please enter URL")
+            if (url !== null){
+                let bookCover = new Image();
+                bookCover.src = url
+                bookCover.classList.add("book-cover")
+                divBook.appendChild(bookCover)
+                picButton.style.display = "none"
+
+                return fetch(`http://localhost:3000/books/${book.id}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json"
+                    },
+                    body: JSON.stringify({
+                        "url": `${bookCover.src}`,
+                    })
+                }).then(resp => resp.json())
+            } else {
+
+            }
+
+        })
+        divBook.appendChild(picButton)
+    } else {
+        let bookCover = new Image();
+        bookCover.src = book.url;
+        bookCover.classList.add("book-cover")
+        divBook.appendChild(bookCover)
+
+    }
 }

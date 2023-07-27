@@ -47,7 +47,6 @@ function addBooks(input) {
 // Searches for books
 function searchBooks(books) {
 
-    console.log(books)
     let searchField = document.createElement('div');
     searchField.setAttribute("class", 'search');
     let collection = document.getElementById("search-collection");
@@ -217,15 +216,14 @@ function renderBooks(books) {
         
         let bookName = document.createElement('h2');
         bookName.innerText = book.title;
-        divBook.appendChild(bookName);
 
         let bookAuthor = document.createElement('h3');
         bookAuthor.innerText = book.author;
-        divBook.appendChild(bookAuthor)
 
         let bookISBN = document.createElement("h4");
         bookISBN.innerText = `ISBN: ${book.isbn}`;
-        divBook.appendChild(bookISBN);
+
+        divBook.append(bookName, bookAuthor, bookISBN)
 
         let picture = book.url
         if (picture == "") {

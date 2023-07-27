@@ -47,6 +47,7 @@ function addBooks(input) {
 // Searches for books
 function searchBooks(books) {
 
+    console.log(books)
     let searchField = document.createElement('div');
     searchField.setAttribute("class", 'search');
     let collection = document.getElementById("search-collection");
@@ -70,6 +71,16 @@ function searchBooks(books) {
 
         }
 
+        let bookISBN = document.createElement("h4");
+        if (book.isbn !== undefined) {
+            bookISBN.innerText = `ISBN: ${book.isbn[0]}`;
+            divBook.appendChild(bookISBN)
+        } else {
+
+        }
+
+        
+
         // posts selected book to local database
         let chooseBook = document.createElement('button')
             chooseBook.innerText = "Choose"
@@ -85,7 +96,8 @@ function searchBooks(books) {
                     body: JSON.stringify({
                         title: book.title,
                         author: book.author_name[0],
-                        url: ""
+                        url: "",
+                        isbn: book.isbn[0]
                     })   
                 })
                 .then(resp => resp.json())
@@ -96,7 +108,7 @@ function searchBooks(books) {
                 
             })
         
-        divBook.append(bookName, chooseBook)
+        divBook.append(bookName, chooseBook, bookISBN)
 
         searchField.appendChild(divBook);
     });
@@ -128,8 +140,11 @@ function selectBook(book) {
     let author = document.createElement('h3');
     author.innerText = book.author
 
+    let bookISBN = document.createElement('h4');
+    bookISBN.innerText = book.isbn
 
-    divBook.append(bookName, author);
+
+    divBook.append(bookName, author, bookISBN);
 
     // a button to add a cover photo via url and patching it to database
     let picButton = document.createElement('button');
@@ -207,6 +222,10 @@ function renderBooks(books) {
         let bookAuthor = document.createElement('h3');
         bookAuthor.innerText = book.author;
         divBook.appendChild(bookAuthor)
+
+        let bookISBN = document.createElement("h4");
+        bookISBN.innerText = book.isbn;
+        divBook.appendChild(bookISBN);
 
         let picture = book.url
         if (picture == "") {

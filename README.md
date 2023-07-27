@@ -14,7 +14,9 @@ track of them without making you pay.
 * Add any number of books
 * Choose which edition to add
 
-## Goals
+![Image](https://imgur.com/zEKhcQN)
+
+## Roadmap
 
 * Add a flip feature so each card default shows just the cover and hovering over flips it to show book information
 * Format information on card better

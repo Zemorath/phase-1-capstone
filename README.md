@@ -14,7 +14,7 @@ track of them without making you pay.
 * Add any number of books
 * Choose which edition to add
 
-![Image](https://imgur.com/zEKhcQN)
+![Image](https://i.imgur.com/zEKhcQN.png)
 
 ## Roadmap
 

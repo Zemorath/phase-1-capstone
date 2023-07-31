@@ -8,18 +8,18 @@
       "id": 3
     },
     {
-      "title": "Darker Shade of Magic Collector's Edition",
-      "author_name": "V.E. Schwab",
-      "url": "https://m.media-amazon.com/images/I/51+QCXDsPCL._SX329_BO1,204,203,200_.jpg",
-      "isbn": "9780765376459",
-      "id": 4
-    },
-    {
       "title": "The Well of Ascension",
       "author_name": "Brandon Sanderson",
       "url": "",
       "isbn": "1427228205",
       "id": 5
+    },
+    {
+      "title": "A darker shade of magic",
+      "author_name": "Victoria Schwab",
+      "url": "",
+      "isbn": "9780765399113",
+      "id": 6
     }
   ]
 }
